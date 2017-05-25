@@ -2,9 +2,12 @@
 var Sequelize = require('sequelize')
 var db = require('../index.js')
 
-module.exports = db.define('user', {
-  name: {type: Sequelize.STRING},
-  email: {
+module.exports = db.define('campus', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  location: {
     type: Sequelize.STRING,
     allowNull: false
   }

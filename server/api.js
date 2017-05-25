@@ -54,6 +54,17 @@ api.put('/users/:id', function(req, res, next){
   });
 });
 
+api.delete('/users/:id', function(req, res, next){
+  return User.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(){
+    res.sendStatus(204);
+  });
+});
+
 api.post('/campuses', function(req, res, next){
   // console.log('location: ', req.body.location);
   // console.log('name===>', req.body.name);
@@ -77,6 +88,33 @@ api.get('/campuses/:id', function(req, res, next){
   return Campus.findById(req.params.id)
   .then(function(foundCampus){
     res.json(foundCampus);
+  });
+});
+
+api.put('/campuses/:id', function(req, res, next){
+  // console.log(req.body);
+  return Campus.update({
+    location: req.body.location
+  }, {
+    where: {
+      id: req.params.id
+    },
+    returning: true,
+    plain: true
+  })
+  .then(function(updatedCampus){
+    res.json(updatedCampus[1]);
+  });
+});
+
+api.delete('/campuses/:id', function(req, res, next){
+  return Campus.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(){
+    res.sendStatus(204);
   });
 });
 

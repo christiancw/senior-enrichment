@@ -1,6 +1,6 @@
 'use strict'
 const api = require('express').Router()
-const db = require('../db')
+const db = require('../db');
 const models = db.models;
 const User = models.user;
 const Campus = models.campus;
@@ -118,4 +118,4 @@ api.delete('/campuses/:id', function(req, res, next){
   });
 });
 
-module.exports = api
+module.exports = api;

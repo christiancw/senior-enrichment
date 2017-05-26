@@ -44,6 +44,7 @@ export default class NewStudentContainer extends Component {
       campusId: campusId
     })
     .then(function(response) {
+      console.log(response);
     })
     .catch(console.log('error'))
     this.setState({

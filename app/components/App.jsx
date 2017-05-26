@@ -35,8 +35,9 @@ export default class App extends Component{
 
   deleteStudentHandler(evt){
     evt.preventDefault();
-    console.log("delete button pressed")
-    axios.delete(`api/users/:${studentId}`)
+    console.log("delete button pressed", this.props)
+    const studentId = Number(this.props.params.studentId);
+    axios.delete(`/api/users/:${studentId}`)
     .then(function(response){
       console.log(response)
     })

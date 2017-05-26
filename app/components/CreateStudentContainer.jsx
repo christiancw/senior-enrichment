@@ -14,24 +14,20 @@ export default class NewStudentContainer extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCampusIdChange = this.handleCampusIdChange.bind(this);
-    // this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
   }
   handleNameChange(evt) {
-    console.log(evt.target.value);
     this.setState({
       nameInputValue: evt.target.value
     });
   }
 
   handleEmailChange(evt) {
-    console.log(evt.target.value);
     this.setState({
       emailInputValue: evt.target.value
     });
   }
 
   handleCampusIdChange(evt) {
-    console.log(evt.target.value);
     this.setState({
       CampusIdInputValue: evt.target.value
     });
@@ -39,8 +35,6 @@ export default class NewStudentContainer extends Component {
 
   handleSubmit (evt) {
     evt.preventDefault();
-    console.log('submittedEmail', this.state.emailInputValue);
-    console.log('submittedname', this.state.nameInputValue);
     const name = this.state.nameInputValue;
     const email = this.state.emailInputValue;
     const campusId = Number(this.state.CampusIdInputValue);
@@ -50,7 +44,6 @@ export default class NewStudentContainer extends Component {
       campusId: campusId
     })
     .then(function(response) {
-      console.log(response);
     })
     .catch(console.log('error'))
     this.setState({

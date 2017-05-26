@@ -6,15 +6,10 @@ export default function OneCampus (props){
   const campuses = props.campuses;
   const campusId = props.routeParams.campusId;
   const campusStudents = students.filter(function(student){
-  //   if (student.campusId === campusId){
-  //   return student;
-  // }
   return student.campusId === Number(campusId);
   })
   const selectedCampusName = campuses[campusId - 1].name;
   const selectedCampusLocation = campuses[campusId - 1].location;
-  console.log("filteredStudents", typeof campusId, campusStudents)
-  console.log('ONECAMPUS PROPS===>', props)
   return (
     <div>
       <div>
@@ -36,6 +31,10 @@ export default function OneCampus (props){
           )}
         </ul>
       </div>
+      <button
+        type="submit">
+        Delete Campus
+      </button>
     </div>
   );
 }

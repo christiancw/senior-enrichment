@@ -4,7 +4,6 @@ import initialState from '../initialState';
 import OneStudent from './SingleStudent';
 import Students from './Students';
 import axios from 'axios';
-// import receiveStudents from '../action-creators/students'
 import store from '../store';
 
 const RECEIVE_STUDENTS = 'RECEIVE_STUDENTS'
@@ -26,54 +25,34 @@ const receiveCampuses = function (campuses){
   }
 }
 
-// const anotherAction = receiveStudents([3,4,5]);
-
 export default class App extends Component{
   constructor(props){
     super();
     this.state = store.getState();
-    console.log("PROPS", this.props)
-    // this.selectStudent = this.selectStudent.bind(this);
     this.fetchCampuses = this.fetchCampuses.bind(this);
+    this.deleteStudentHandler = this.deleteStudentHandler.bind(this);
+  }
+
+  deleteStudentHandler(evt){
+    evt.preventDefault();
+    console.log("delete button pressed")
+    axios.delete(`api/users/:${studentId}`)
+    .then(function(response){
+      console.log(response)
+    })
   }
 
   fetchCampuses(){
     axios.get('/api/campuses')
     .then(res => res.data)
-    // .then(gotCampuses => {
-    //   console.log("GOT CAMPUSES", gotCampuses);
-    //   this.setState({
-    //     campuses: gotCampuses
-    //   });
-    // });
     .then(function(gotCampuses){
       store.dispatch(receiveCampuses(gotCampuses))
-    })
+    });
   }
-
-// componentDidMount() {
-//   this.fetchCampuses();
-// }
-
-// fetchStudents(){
-//   axios.get('/api/users')
-//   .then(res => res.data)
-//   .then(gotStudents => {
-//     console.log(gotStudents);
-//     this.setState({
-//       students: gotStudents
-//     });
-//   });
-// }
 
 fetchStudents(){
   axios.get('/api/users')
   .then(res => res.data)
-  // .then(function(gotStudents) => {
-  //   console.log("GOT STUDENTS==>", Array.isArray(gotStudents))
-  //   // store.dispatch(receiveStudents(gotStudents));
-  //   // console.log("dispatched action ===>", receiveStudents(gotStudents));
-  // })
   .then(function(gotStudents){
     console.log("STUDENTS TO PASS", gotStudents)
     store.dispatch(receiveStudents(gotStudents))
@@ -84,10 +63,6 @@ componentDidMount() {
 this.fetchStudents();
 this.fetchCampuses();
 }
-
-// componentDidMount() {
-// store.dispatch(receiveStudents([3,4,5]));
-// }
 
   render(){
     console.log("STATE", this.state)
@@ -104,6 +79,7 @@ this.fetchCampuses();
               this.props.children ? React.cloneElement(this.props.children, {
               students: store.getState().students.students,
               campuses: store.getState().campuses.campuses,
+              deleteStudentHandler: this.deleteStudentHandler,
               selectedStudent: this.state.selectedStudent
             }) : null
           }

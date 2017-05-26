@@ -42,6 +42,10 @@ export default class NewCampusContainer extends Component {
       console.log(response);
     })
     .catch(console.log('error'))
+    this.setState({
+      nameInputValue: '',
+      locationInputValue: ''
+    })
     // this.props.addNewCampus(this.state.inputValue);
   }
 

@@ -15,6 +15,9 @@ export default function Campuses (props) {
               <Link to={`/campuses/${campus.id}`}>{campus.name}</Link></li>
             )}
           </ul>
+          <button>
+            <Link to="/campuses/createCampus">CREATE NEW CAMPUS</Link>
+          </button>
       </div>
     );
 }

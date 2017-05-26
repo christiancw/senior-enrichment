@@ -14,6 +14,7 @@ import OneCampus from './components/SingleCampus';
 import OneStudent from './components/SingleStudent';
 import CreateCampus from './components/CreateCampus';
 import NewCampusContainer from './components/CreateCampusContainer';
+import NewStudentContainer from './components/CreateStudentContainer';
 
 import { Router, Route, IndexRedirect, Link, hashHistory } from 'react-router';
 
@@ -22,7 +23,8 @@ render (
     <Route path="/" component={App}>
       <Route path="/home" component={ Home } />
         <Route path="/students" component={ Students } />
-          <Route path="/students/:studentId" component={ OneStudent } />
+        <Route path="/students/createStudent" component={ NewStudentContainer } />
+        <Route path="/students/:studentId" component={ OneStudent } />
         <Route path="/campuses" component={ Campuses } />
         <Route path="/campuses/createCampus" component={ NewCampusContainer } />
         <Route path="/campuses/:campusId" component={ OneCampus } />

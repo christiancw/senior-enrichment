@@ -17,6 +17,9 @@ export default function Students (props) {
             <Link to={`/students/${student.id}`}>{student.name}</Link></li>
           )}
         </ul>
+        <button>
+          <Link to="/students/createStudent">CREATE NEW STUDENT</Link>
+        </button>
       </div>
     );
 }

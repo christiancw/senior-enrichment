@@ -6,7 +6,7 @@ export default function OneCampus (props){
   const campusId = props.routeParams.campusId;
   const selectedCampusName = campuses[campusId - 1].name;
   const selectedCampusLocation = campuses[campusId - 1].location;
-  console.log(selectedCampusName)
+  console.log('ONECAMPUS PROPS===>', props)
   return (
     <div>
       <div>

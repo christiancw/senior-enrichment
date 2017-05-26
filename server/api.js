@@ -31,7 +31,8 @@ api.post('/users', function(req, res, next){
   // console.log('name===>', req.body.name);
   User.create({
     name: req.body.name,
-    email: req.body.email
+    email: req.body.email,
+    campusId: req.body.campusId
   })
   .then(function(createdUser){
     res.status(201).json(createdUser);

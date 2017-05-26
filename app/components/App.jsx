@@ -95,7 +95,7 @@ this.fetchCampuses();
     console.log("STORE", store.getState())
     return (
       <div>
-        <h2>Here's some content from AppContainer</h2>
+        <h2>Margaret Hamilton Interplanetary Academy of JavaScript</h2>
         <div>
           <Navbar />
         </div>

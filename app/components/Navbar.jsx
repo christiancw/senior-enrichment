@@ -5,7 +5,7 @@ import { Router, Route, IndexRedirect, Link, hashHistory } from 'react-router';
 export default function Navbar (){
   return (
     <div>
-      <h3>yooooo Navbar here!</h3>
+      <h3>Campus Management</h3>
       <button>
         <Link to="/">  HOME  </Link>
       </button>

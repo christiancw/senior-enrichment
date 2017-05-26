@@ -18,12 +18,20 @@ const receiveStudents = function (students){
   }
 }
 
+const RECEIVE_CAMPUSES = 'RECEIVE_CAMPUSES';
+const receiveCampuses = function (campuses){
+  return {
+    type: RECEIVE_CAMPUSES,
+    campuses: campuses
+  }
+}
+
 // const anotherAction = receiveStudents([3,4,5]);
 
 export default class App extends Component{
   constructor(props){
     super();
-    this.state = initialState;
+    this.state = store.getState();
     console.log("PROPS", this.props)
     // this.selectStudent = this.selectStudent.bind(this);
     this.fetchCampuses = this.fetchCampuses.bind(this);
@@ -32,17 +40,20 @@ export default class App extends Component{
   fetchCampuses(){
     axios.get('/api/campuses')
     .then(res => res.data)
-    .then(gotCampuses => {
-      console.log(gotCampuses);
-      this.setState({
-        campuses: gotCampuses
-      });
-    });
+    // .then(gotCampuses => {
+    //   console.log("GOT CAMPUSES", gotCampuses);
+    //   this.setState({
+    //     campuses: gotCampuses
+    //   });
+    // });
+    .then(function(gotCampuses){
+      store.dispatch(receiveCampuses(gotCampuses))
+    })
   }
 
-componentDidMount() {
-  this.fetchCampuses();
-}
+// componentDidMount() {
+//   this.fetchCampuses();
+// }
 
 // fetchStudents(){
 //   axios.get('/api/users')
@@ -71,6 +82,7 @@ fetchStudents(){
 
 componentDidMount() {
 this.fetchStudents();
+this.fetchCampuses();
 }
 
 // componentDidMount() {
@@ -90,7 +102,7 @@ this.fetchStudents();
           <div>
             {
               this.props.children ? React.cloneElement(this.props.children, {
-              students: this.state.students,
+              students: store.getState().students,
               campuses: this.state.campuses,
               selectedStudent: this.state.selectedStudent
             }) : null

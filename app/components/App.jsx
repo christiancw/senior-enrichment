@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import initialState from '../initialState';
 import OneStudent from './SingleStudent';
 import Students from './Students';
+import axios from 'axios';
 
 export default class App extends Component{
   constructor(props){
@@ -10,7 +11,23 @@ export default class App extends Component{
     this.state = initialState;
     console.log("PROPS", this.props)
     // this.selectStudent = this.selectStudent.bind(this);
+    this.fetchCampuses = this.fetchCampuses.bind(this);
   }
+
+  fetchCampuses(){
+    axios.get('/api/campuses')
+    .then(res => res.data)
+    .then(gotCampuses => {
+      console.log(gotCampuses);
+      this.setState({
+        campuses: gotCampuses
+      });
+    });
+  }
+
+componentDidMount() {
+  this.fetchCampuses();
+}
 
 // selectStudent(){
 //   this.setState({

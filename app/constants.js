@@ -1,0 +1,1 @@
+export const RECEIVE_STUDENTS = 'RECEIVE_STUDENTS';

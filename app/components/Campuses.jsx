@@ -5,25 +5,8 @@ export default class Campuses extends Component{
   constructor(props){
     super(props)
     this.state = {
-
     };
-
   }
-
-//   fetchCampuses(){
-//     axios.get('/api/campuses')
-//     .then(res => res.data)
-//     .then(gotCampuses => {
-//       console.log(gotCampuses);
-//       this.setState({
-//         campuses: gotCampuses
-//       });
-//     });
-//   }
-//
-// componentDidMount() {
-//   this.fetchCampuses();
-// }
 
   render(){
     console.log("propsInCampuses ===>", this.props)

@@ -4,6 +4,21 @@ import initialState from '../initialState';
 import OneStudent from './SingleStudent';
 import Students from './Students';
 import axios from 'axios';
+// import receiveStudents from '../action-creators/students'
+import store from '../store';
+
+const RECEIVE_STUDENTS = 'RECEIVE_STUDENTS'
+
+const someAction = {type: RECEIVE_STUDENTS, students: 'helloooooooooplease'}
+
+const receiveStudents = function (students){
+  return {
+    type: RECEIVE_STUDENTS,
+    students: students
+  }
+}
+
+// const anotherAction = receiveStudents([3,4,5]);
 
 export default class App extends Component{
   constructor(props){
@@ -29,15 +44,43 @@ componentDidMount() {
   this.fetchCampuses();
 }
 
-// selectStudent(){
-//   this.setState({
-//     selectedStudent: 1
+// fetchStudents(){
+//   axios.get('/api/users')
+//   .then(res => res.data)
+//   .then(gotStudents => {
+//     console.log(gotStudents);
+//     this.setState({
+//       students: gotStudents
+//     });
 //   });
+// }
+
+fetchStudents(){
+  axios.get('/api/users')
+  .then(res => res.data)
+  // .then(function(gotStudents) => {
+  //   console.log("GOT STUDENTS==>", Array.isArray(gotStudents))
+  //   // store.dispatch(receiveStudents(gotStudents));
+  //   // console.log("dispatched action ===>", receiveStudents(gotStudents));
+  // })
+  .then(function(gotStudents){
+    console.log("STUDENTS TO PASS", gotStudents)
+    store.dispatch(receiveStudents(gotStudents))
+  })
+}
+
+componentDidMount() {
+this.fetchStudents();
+}
+
+// componentDidMount() {
+// store.dispatch(receiveStudents([3,4,5]));
 // }
 
   render(){
     console.log("STATE", this.state)
     console.log("ALSO PROPS", this.props)
+    console.log("STORE", store.getState())
     return (
       <div>
         <h2>Here's some content from AppContainer</h2>

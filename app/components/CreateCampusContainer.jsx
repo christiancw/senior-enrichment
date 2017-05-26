@@ -5,28 +5,52 @@ export default class NewCampusContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
+      nameInputValue: '',
+      locationInputValue: ''
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
   }
-  handleChange(evt) {
+  handleNameChange(evt) {
     console.log(evt.target.value);
     this.setState({
-      inputValue: evt.target.value
+      nameInputValue: evt.target.value
     });
   }
+
+  handleLocationChange(evt) {
+    console.log(evt.target.value);
+    this.setState({
+      locationInputValue: evt.target.value
+    });
+  }
+
+  // handleNameSubmit (evt) {
+  //   evt.preventDefault();
+  //   console.log(this.state.nameInputValue);
+  //   // this.props.addNewCampus(this.state.inputValue);
+  // }
+
   handleSubmit (evt) {
     evt.preventDefault();
-    console.log(this.state.inputValue);
+    console.log('submittedLocation', this.state.locationInputValue);
+    console.log('submittedname', this.state.nameInputValue);
     // this.props.addNewCampus(this.state.inputValue);
   }
+
   render() {
-    const inputValue = this.state.inputValue;
+    const nameInputValue = this.state.nameInputValue;
+    const locationInputValue = this.state.locationInputValue;
     return (
-      <CreateCampus inputValue={ inputValue }
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}/>
+      <CreateCampus
+        nameInputValue={ nameInputValue }
+        locationInputValue={ locationInputValue}
+        handleNameChange={this.handleNameChange}
+        handleSubmit={this.handleSubmit}
+        handleLocationChange={this.handleLocationChange}
+        handleLocationSubmit={this.handleLocationSubmit}/>
     )
   }
 }

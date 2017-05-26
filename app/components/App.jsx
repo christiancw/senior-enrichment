@@ -23,17 +23,19 @@ export default class App extends Component{
     console.log("ALSO PROPS", this.props)
     return (
       <div>
-        <h2>Here's some content</h2>
+        <h2>Here's some content from AppContainer</h2>
         <div>
           <Navbar />
-          <div>
-            <h3>another attempt</h3>
-              <Students
-                students={this.state.students}
-                studentSelected={this.state.selectedStudent}
-                />
-          </div>
         </div>
+          <div>
+            {
+              this.props.children ? React.cloneElement(this.props.children, {
+              students: this.state.students,
+              campuses: this.state.campuses,
+              selectedStudent: this.state.selectedStudent
+            }) : null
+          }
+          </div>
       </div>
     );
   }

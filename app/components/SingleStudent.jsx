@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 export default function OneStudent (props){
   console.log('oneStudentProps', props);
-  const studentId = props.studentId;
+  console.log(props.routeParams.studentId)
   const students = props.students;
+  const studentId = props.routeParams.studentId;
   const selectedStudentHere = students[studentId].name;
   return (
     <div>

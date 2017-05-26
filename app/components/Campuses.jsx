@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 
 export default class Campuses extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      campuses: [{
-        name: 'acampushere'
-      },
-    {
-      name: 'anotherCampushere'
-    }]
+      campuses: props.campuses
     };
   }
 
@@ -19,12 +14,12 @@ export default class Campuses extends Component{
 // }
 
   render(){
-    // console.log("propsRouteParams ===>", this.props.routeParams)
+    console.log("propsInCampuses ===>", this.props)
     return (
       <div>
         <h3>this will be a list of campuses!</h3>
           <ul>
-            { this.state.campuses.map(campus =>
+            { this.props.campuses.map(campus =>
             <li key={campus.name}>{campus.name}</li>
             )}
           </ul>

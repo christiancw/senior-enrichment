@@ -9,7 +9,15 @@ export default class App extends Component{
     super();
     this.state = initialState;
     console.log("PROPS", this.props)
+    // this.selectStudent = this.selectStudent.bind(this);
   }
+
+// selectStudent(){
+//   this.setState({
+//     selectedStudent: 1
+//   });
+// }
+
   render(){
     console.log("STATE", this.state)
     console.log("ALSO PROPS", this.props)
@@ -19,11 +27,11 @@ export default class App extends Component{
         <div>
           <Navbar />
           <div>
-            {this.props.children}
-          </div>
-          <div>
             <h3>another attempt</h3>
-            <OneStudent />
+              <Students
+                students={this.state.students}
+                studentSelected={this.state.selectedStudent}
+                />
           </div>
         </div>
       </div>

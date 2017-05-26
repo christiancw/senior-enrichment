@@ -24,7 +24,8 @@ students: [
     id: 4,
     campusId: 2
   }
-]
+],
+selectedStudent: 1
 };
 
 export default initialState;

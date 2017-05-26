@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CreateCampus from './CreateCampus';
+import axios from 'axios';
 
 export default class NewCampusContainer extends Component {
   constructor(props) {
@@ -27,16 +28,20 @@ export default class NewCampusContainer extends Component {
     });
   }
 
-  // handleNameSubmit (evt) {
-  //   evt.preventDefault();
-  //   console.log(this.state.nameInputValue);
-  //   // this.props.addNewCampus(this.state.inputValue);
-  // }
-
   handleSubmit (evt) {
     evt.preventDefault();
     console.log('submittedLocation', this.state.locationInputValue);
     console.log('submittedname', this.state.nameInputValue);
+    const name = this.state.nameInputValue;
+    const location = this.state.locationInputValue;
+    axios.post('/api/campuses', {
+      name: name,
+      location: location
+    })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(console.log('error'))
     // this.props.addNewCampus(this.state.inputValue);
   }
 

@@ -102,8 +102,8 @@ this.fetchCampuses();
           <div>
             {
               this.props.children ? React.cloneElement(this.props.children, {
-              students: store.getState().students,
-              campuses: this.state.campuses,
+              students: store.getState().students.students,
+              campuses: store.getState().campuses.campuses,
               selectedStudent: this.state.selectedStudent
             }) : null
           }

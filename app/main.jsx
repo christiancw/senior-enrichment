@@ -11,26 +11,18 @@ import Home from './components/Home';
 import Students from './components/Students';
 import Campuses from './components/Campuses';
 import OneCampus from './components/SingleCampus';
+import OneStudent from './components/SingleStudent';
 
 import { Router, Route, IndexRedirect, Link, hashHistory } from 'react-router';
 
-// function Home (){
-//   return (
-//     <div>
-//       <h3>hello from Home</h3>
-//     </div>
-//   )
-// }
-
 render (
   <Router history={hashHistory}>
-    <Route path="/" component={App} >
+    <Route path="/" component={App}>
       <Route path="/home" component={ Home } />
-      <Route path="/navbar" component={ Navbar } />
-      <Route path="/students" component={ Students } />
-      <Route path="/campuses" component={ Campuses } >
-        <Route path=":campusId" component={ OneCampus } />
-      </Route>
+        <Route path="/students" component={ Students } />
+          <Route path="/students/:studentId" component={ OneStudent } />
+        <Route path="/campuses" component={ Campuses } />
+        <Route path="/campuses/:campusId" component={ OneCampus } />
     </Route>
   </Router>,
   document.getElementById('main')

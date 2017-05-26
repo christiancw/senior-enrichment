@@ -8,7 +8,7 @@ export default function Campuses (props) {
     // console.log("Campus State ===>", this.state);
     return (
       <div>
-        <h3>this will be a list of campuses!</h3>
+        <h3>Current Campuses</h3>
         <ul>
             { campuses.map(campus =>
             <li key={campus.id}>

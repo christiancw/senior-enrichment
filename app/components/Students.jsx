@@ -9,7 +9,7 @@ export default function Students (props) {
   const selectStudent = props.selectedStudent;
     return (
       <div>
-        <h3>this will be a list of students!</h3>
+        <h3>Current Students</h3>
         <h2>{selectStudent}</h2>
         <ul>
           { students.map(student =>

@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import { Router, Route, IndexRedirect, Link, hashHistory } from 'react-router';
 
 export default function OneCampus (props){
   const students = props.students;
   const campuses = props.campuses;
   const campusId = props.routeParams.campusId;
+  const campusStudents = students.filter(function(student){
+  //   if (student.campusId === campusId){
+  //   return student;
+  // }
+  return student.campusId === Number(campusId);
+  })
   const selectedCampusName = campuses[campusId - 1].name;
   const selectedCampusLocation = campuses[campusId - 1].location;
+  console.log("filteredStudents", typeof campusId, campusStudents)
   console.log('ONECAMPUS PROPS===>', props)
   return (
     <div>
@@ -15,12 +23,18 @@ export default function OneCampus (props){
             <th>{selectedCampusName}</th>
           </tr>
           <tr>
-            <td>{selectedCampusLocation}</td>
+            <td>Campus Location: {selectedCampusLocation}</td>
           </tr>
           <tr>
-            <td>SELECTED STUDENTS HERE</td>
+            <td>STUDENTS</td>
           </tr>
         </table>
+        <ul>
+          { campusStudents.map(student =>
+          <li key={student.id}>
+            <Link to={`/students/${student.id}`}>{student.name}</Link></li>
+          )}
+        </ul>
       </div>
     </div>
   );

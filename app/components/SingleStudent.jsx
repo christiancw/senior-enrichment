@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Router, Route, IndexRedirect, Link, hashHistory } from 'react-router';
 
 export default function OneStudent (props){
   console.log('oneStudentProps', props.students);
@@ -22,7 +23,7 @@ export default function OneStudent (props){
         <td>{selectedStudentEmail}</td>
       </tr>
       <tr>
-        <td>{selectedStudentCampus}</td>
+        <td><Link to={`/campuses/${campuses[studentId - 1].id}`}>{selectedStudentCampus}</Link></td>
       </tr>
     </table>
   </div>
